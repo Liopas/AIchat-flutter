@@ -256,7 +256,7 @@ class ChatScreen extends StatelessWidget {
   // Построение верхней панели приложения
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color(0xFF302112),
+      backgroundColor: const Color(0xFF161A1E),
       toolbarHeight: 58,
       title: Row(
         children: [
@@ -524,31 +524,33 @@ class ChatScreen extends StatelessWidget {
   }
 
   // Создание отдельной кнопки действия с заданными параметрами
-  Widget _buildActionButton({
-    required BuildContext context,
-    required IconData icon,
-    required String label,
-    required Color color,
-    required VoidCallback onPressed,
-  }) {
-    return SizedBox(
-      height: 32,
-      child: ElevatedButton.icon(
-        icon: Icon(icon, size: 16),
-        label: Text(label, style: const TextStyle(fontSize: 12)),
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          foregroundColor: Colors.black,
-          elevation: 6,
-          shadowColor: Colors.black87,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.zero,
+    Widget _buildActionButton({
+      required BuildContext context,
+      required IconData icon,
+      required String label,
+      required Color color,
+      required VoidCallback onPressed,
+    }) {
+      return SizedBox(
+        height: 32,
+        child: OutlinedButton.icon(
+          icon: Icon(icon, size: 16),
+          label: Text(label, style: const TextStyle(fontSize: 12)),
+          onPressed: onPressed,
+          style: OutlinedButton.styleFrom(
+            foregroundColor: color,
+            side: BorderSide(
+              color: color,
+              width: 1.5,
+            ),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
           ),
         ),
-      ),
-    );
-  }
+      );
+    }
 
   // Отображение диалога с аналитикой использования чата
   void _showAnalyticsDialog(BuildContext context) {

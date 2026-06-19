@@ -179,4 +179,18 @@ class DatabaseService {
       };
     }
   }
+
+  Future<List<Map<String, dynamic>>> getDailyCosts() async {
+    final db = await database;
+
+    return await db.rawQuery('''
+        SELECT
+          substr(timestamp,1,10) as day,
+          SUM(cost) as total_cost
+        FROM messages
+        WHERE cost IS NOT NULL
+        GROUP BY day
+        ORDER BY day
+      ''');
+  }
 }
